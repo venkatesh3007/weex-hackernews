@@ -276,15 +276,15 @@ public abstract class BaseBounceView<T extends View> extends FrameLayout {
     /**
      * Init Swipelayout
      */
-    private WXSwipeLayout createBounceView(Context context) {
-        swipeLayout = new WXSwipeLayout(context);
-        swipeLayout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+    private T createBounceView(Context context) {
+//        swipeLayout = new WXSwipeLayout(context);
+//        swipeLayout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         innerView = setInnerView(context);
         if (innerView == null)
             return null;
-        swipeLayout.addView(innerView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-        addView(swipeLayout, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        return swipeLayout;
+//        swipeLayout.addView(innerView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        addView(innerView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        return innerView;
     }
 
     /**

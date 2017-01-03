@@ -42,6 +42,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.1.1'
     compile 'com.android.support:support-v4:24.1.1'
     compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'com.android.support:design:24.1.1'
     compile 'com.alibaba:fastjson:1.1.46.android'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile project(':weex_sdk')

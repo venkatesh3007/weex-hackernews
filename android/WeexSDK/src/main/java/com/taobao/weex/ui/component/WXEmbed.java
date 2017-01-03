@@ -296,6 +296,9 @@ public class WXEmbed extends WXDiv implements WXSDKInstance.OnInstanceVisibleLis
 
     @Override
     public boolean onPreCreate(NestedContainer comp, String src) {
+      FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) comp.getViewContainer().getLayoutParams();
+      layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT;
+      comp.getViewContainer().setLayoutParams(layoutParams);
       return true;
     }
 

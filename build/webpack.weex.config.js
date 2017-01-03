@@ -22,7 +22,7 @@ module.exports = {
         exclude: /node_modules/
       }, {
         test: /\.vue(\?[^?]+)?$/,
-        loaders: ['weex-loader']
+        loaders: ['weex-loader', 'weex-vue-loader']
       }
     ]
   },
