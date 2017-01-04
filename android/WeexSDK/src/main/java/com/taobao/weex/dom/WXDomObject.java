@@ -347,7 +347,11 @@ public class WXDomObject extends CSSNode implements Cloneable,ImmutableDomObject
     dest.mStyles = mStyles == null ? null : mStyles.clone();//mStyles == null ? null : mStyles.clone();
     dest.mAttributes = mAttributes == null ? null : mAttributes.clone();//mAttrs == null ? null : mAttrs.clone();
     dest.mEvents = mEvents == null ? null : mEvents.clone();
-    dest.csslayout.copy(this.csslayout);
+    if (getType().equals("mydrawerview")) {
+      dest.csslayout.copy(this.csslayout);
+    } else {
+      dest.csslayout.copy(this.csslayout);
+    }
   }
 
   /**
@@ -727,6 +731,9 @@ public class WXDomObject extends CSSNode implements Cloneable,ImmutableDomObject
     }
     WXDomObject dom = null;
     try {
+      if (mType.equals("mydrawerview")) {
+        dom = WXDomObjectFactory.newInstance(mType);
+      }
       dom = WXDomObjectFactory.newInstance(mType);
       copyFields(dom);
     } catch (Exception e) {

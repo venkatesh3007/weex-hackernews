@@ -5,6 +5,8 @@
  */
 package com.taobao.weex.dom.flex;
 
+import com.taobao.weex.dom.WXDomObject;
+
 import static com.taobao.weex.dom.flex.CSSLayout.DIMENSION_HEIGHT;
 import static com.taobao.weex.dom.flex.CSSLayout.DIMENSION_WIDTH;
 import static com.taobao.weex.dom.flex.CSSLayout.POSITION_BOTTOM;
@@ -195,6 +197,9 @@ public class LayoutEngine {
       CSSNode node,
       float parentMaxWidth,
       CSSDirection parentDirection) {
+    if (((WXDomObject) node).getType().equals("mydrawerview")) {
+      node.getParent();
+    }
     if (needsRelayout(node, parentMaxWidth)) {
       node.lastLayout.requestedWidth = node.csslayout.dimensions[DIMENSION_WIDTH];
       node.lastLayout.requestedHeight = node.csslayout.dimensions[DIMENSION_HEIGHT];

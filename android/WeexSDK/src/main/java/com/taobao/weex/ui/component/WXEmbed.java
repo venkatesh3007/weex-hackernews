@@ -296,9 +296,6 @@ public class WXEmbed extends WXDiv implements WXSDKInstance.OnInstanceVisibleLis
 
     @Override
     public boolean onPreCreate(NestedContainer comp, String src) {
-      FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) comp.getViewContainer().getLayoutParams();
-      layoutParams.height = FrameLayout.LayoutParams.MATCH_PARENT;
-      comp.getViewContainer().setLayoutParams(layoutParams);
       return true;
     }
 
@@ -451,11 +448,9 @@ public class WXEmbed extends WXDiv implements WXSDKInstance.OnInstanceVisibleLis
       return sdkInstance;
     }
 
-    ViewGroup.LayoutParams layoutParams = getHostView().getLayoutParams();
     sdkInstance.renderByUrl(WXPerformance.DEFAULT,
                             url,
-                            null, null, layoutParams.width,
-                            layoutParams.height,
+                            null, null,
                             WXRenderStrategy.APPEND_ASYNC);
     return sdkInstance;
   }

@@ -206,6 +206,7 @@ package com.taobao.weex.ui.component;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.Constants;
@@ -302,8 +303,12 @@ public abstract class WXVContainer<T extends ViewGroup> extends WXComponent<T> {
     if(lp == null) {
       lp = new ViewGroup.LayoutParams(width,height);
     }else{
+      if ((child instanceof WXEmbed || child instanceof WXDiv) && (height == 0 || height == -1)) {
+        lp.height = FrameLayout.LayoutParams.MATCH_PARENT;
+      } else {
+        lp.height = height;
+      }
       lp.width = width;
-      lp.height = height;
       if(lp instanceof ViewGroup.MarginLayoutParams){
         ((ViewGroup.MarginLayoutParams) lp).setMargins(left,top,right,bottom);
       }
