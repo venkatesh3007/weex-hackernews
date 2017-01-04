@@ -213,6 +213,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.Constants;
+import com.taobao.weex.dom.flex.CSSLayout;
 import com.taobao.weex.dom.flex.CSSLayoutContext;
 import com.taobao.weex.dom.flex.CSSNode;
 import com.taobao.weex.dom.flex.Spacing;
@@ -348,6 +349,8 @@ public class WXDomObject extends CSSNode implements Cloneable,ImmutableDomObject
     dest.mAttributes = mAttributes == null ? null : mAttributes.clone();//mAttrs == null ? null : mAttrs.clone();
     dest.mEvents = mEvents == null ? null : mEvents.clone();
     if (getType().equals("mydrawerview")) {
+      this.csslayout.dimensions[CSSLayout.DIMENSION_HEIGHT] = this.csslayout.dimensions[CSSLayout.DIMENSION_HEIGHT] + this.csslayout.position[CSSLayout.POSITION_TOP];
+      this.csslayout.position[CSSLayout.POSITION_TOP] = 0;
       dest.csslayout.copy(this.csslayout);
     } else {
       dest.csslayout.copy(this.csslayout);
