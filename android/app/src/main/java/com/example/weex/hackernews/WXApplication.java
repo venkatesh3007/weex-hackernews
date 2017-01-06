@@ -2,6 +2,8 @@ package com.example.weex.hackernews;
 
 
 import android.app.Application;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
@@ -14,9 +16,12 @@ import com.taobao.weex.dom.WXScrollerDomObject;
  */
 public class WXApplication extends Application {
 
+    public static int linkColor = Color.BLUE;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        linkColor = ContextCompat.getColor(getBaseContext(), R.color.ab_blue);
         InitConfig config=new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
         WXSDKEngine.initialize(this,config);
         try {
@@ -35,6 +40,10 @@ public class WXApplication extends Application {
         } catch (WXException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getLinkColor() {
+        return linkColor;
     }
 }
 

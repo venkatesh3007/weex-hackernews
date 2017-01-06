@@ -118,7 +118,7 @@
 	                    "visibility": "visible"
 	                  },
 	                  "attr": {
-	                    "src": "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list.js",
+	                    "src": function () {return this.src},
 	                    "type": "weex"
 	                  }
 	                }
@@ -135,7 +135,10 @@
 	      },
 	      "style": {
 	        "flex": 1,
-	        "backgroundColor": "#FFFFFF"
+	        "backgroundColor": "#FFFFFF",
+	        "position": "absolute",
+	        "top": 0,
+	        "bottom": 0
 	      },
 	      "children": [
 	        {
@@ -176,6 +179,12 @@
 	              "attr": {
 	                "src": "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list.js",
 	                "type": "weex"
+	              }
+	            },
+	            {
+	              "type": "text",
+	              "attr": {
+	                "value": "Hello"
 	              }
 	            }
 	          ]
@@ -305,23 +314,23 @@
 	  data: function () {return {
 	    imageUrl: 'https://cdn.photographylife.com/wp-content/uploads/2012/01/Nikon-500mm-f4-Sample-4-960x638.jpg',
 	    pageItems: [{
-	      title: "Tech",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/list-demo.js"
+	      title: "EconomicTimes",
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-et.js"
 	    }, {
-	      title: "Markets",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/list-demo.js"
+	      title: "MoneyControl",
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-mc.js"
 	    }, {
-	      title: "Business",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/list-demo.js"
+	      title: "WashingtonTimes",
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-wt.js"
 	    }, {
 	      title: "MF",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/list-demo.js"
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list.js"
 	    }, {
 	      title: "StartUps",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/list-demo.js"
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list.js"
 	    }, {
 	      title: "Videos",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/list-demo.js"
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list.js"
 	    }]
 	  }}
 	};}

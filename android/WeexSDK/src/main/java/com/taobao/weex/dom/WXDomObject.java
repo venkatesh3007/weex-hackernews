@@ -348,13 +348,7 @@ public class WXDomObject extends CSSNode implements Cloneable,ImmutableDomObject
     dest.mStyles = mStyles == null ? null : mStyles.clone();//mStyles == null ? null : mStyles.clone();
     dest.mAttributes = mAttributes == null ? null : mAttributes.clone();//mAttrs == null ? null : mAttrs.clone();
     dest.mEvents = mEvents == null ? null : mEvents.clone();
-    if (getType().equals("mydrawerview")) {
-      this.csslayout.dimensions[CSSLayout.DIMENSION_HEIGHT] = this.csslayout.dimensions[CSSLayout.DIMENSION_HEIGHT] + this.csslayout.position[CSSLayout.POSITION_TOP];
-      this.csslayout.position[CSSLayout.POSITION_TOP] = 0;
-      dest.csslayout.copy(this.csslayout);
-    } else {
-      dest.csslayout.copy(this.csslayout);
-    }
+    dest.csslayout.copy(this.csslayout);
   }
 
   /**

@@ -1,6 +1,8 @@
 package com.example.weex.hackernews;
 
+import android.app.Application;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -18,6 +20,7 @@ import android.text.style.AlignmentSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
+import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 
 import com.taobao.weex.WXEnvironment;
@@ -60,16 +63,19 @@ public class MyViewDomObject extends WXDomObject {
         protected int start, end;
         protected Object what;
         protected String type;
+        protected IndexTrackerHolder indexTrackerHolder;
 
         SetSpanOperation(int start, int end, Object what, String type) {
             this.start = start;
             this.end = end;
             this.what = what;
             this.type = type;
+            this.indexTrackerHolder = null;
         }
 
-        SetSpanOperation(String type) {
+        SetSpanOperation(String type, IndexTrackerHolder indexTrackerHolder) {
             this.type = type;
+            this.indexTrackerHolder = indexTrackerHolder;
         }
 
         public String getType() {
@@ -81,16 +87,38 @@ public class MyViewDomObject extends WXDomObject {
         }
 
         public void execute(SpannableStringBuilder span, String value) {
-            Pattern pattern = Pattern.compile("\\{b\\}(.*?)\\{b\\}");
+            Pattern pattern = null;
+
+            if (type.equals("boldSpanOperation")) {
+                pattern = Pattern.compile("\\{b\\}(.*?)\\{b\\}");
+            } else if (type.equals("italicSpanOperation")) {
+                pattern = Pattern.compile("\\{i\\}(.*?)\\{i\\}");
+            } else if (type.equals("underlineSpanOperation")) {
+                pattern = Pattern.compile("\\{u\\}(.*?)\\{u\\}");
+            } else if (type.equals("anchorSpanOperation")) {
+                pattern = Pattern.compile("(\\{a (href='(([a-z]|[A-Z]|[0-9]|\\?|=|&|\\.|\\:|\\/|\\-|(?: ))+)'\\}))(([a-z]|[A-Z]| |\\-)+)(\\{a\\})");
+            }
+
             Matcher match = pattern.matcher(value);
-            int indexTracker = 0;
+
             while (match.find()) {
-                span.setSpan(new StyleSpan(android.graphics.Typeface.BOLD),
-                        match.start() - indexTracker, match.end() - indexTracker, 0);
-                span.delete(match.start() - indexTracker, (match.start() + 3 - indexTracker));
-                indexTracker += 3;
-                span.delete((match.end() - 3) - indexTracker, match.end() - indexTracker);
-                indexTracker += 3;
+                if (type.equals("boldSpanOperation")) {
+                    span.setSpan(new StyleSpan(android.graphics.Typeface.BOLD),
+                            match.start(), match.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else if (type.equals("italicSpanOperation")) {
+                    span.setSpan(new StyleSpan(Typeface.ITALIC),
+                            match.start(), match.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else if (type.equals("underlineSpanOperation")) {
+                    span.setSpan(new UnderlineSpan(),
+                            match.start(), match.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else if (type.equals("anchorSpanOperation")) {
+                    String url = match.group(3);
+                    URLSpan urlSpan = new URLSpan(url);
+                    span.setSpan(urlSpan,
+                            match.start(5), match.end(5), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    span.setSpan(new ForegroundColorSpan(WXApplication.getLinkColor()), match.start(5), match.end(5),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
             }
         }
     }
@@ -106,13 +134,13 @@ public class MyViewDomObject extends WXDomObject {
             if (CSSConstants.isUndefined(width)) {
                 width = node.cssstyle.maxWidth;
             }
-            if(textDomObject.getTextWidth(textDomObject.mTextPaint,width,false)>0) {
+            if (textDomObject.getTextWidth(textDomObject.mTextPaint, width, false) > 0) {
                 textDomObject.layout = textDomObject.createLayout(width, false, null);
                 textDomObject.hasBeenMeasured = true;
                 textDomObject.previousWidth = textDomObject.layout.getWidth();
                 measureOutput.height = textDomObject.layout.getHeight();
                 measureOutput.width = textDomObject.previousWidth;
-            }else{
+            } else {
                 measureOutput.height = 0;
                 measureOutput.width = 0;
             }
@@ -143,14 +171,18 @@ public class MyViewDomObject extends WXDomObject {
     private Layout.Alignment mAlignment;
     private WXTextDecoration mTextDecoration = WXTextDecoration.NONE;
     private TextPaint mTextPaint = new TextPaint();
-    private @Nullable
+    private
+    @Nullable
     Spanned spanned;
-    private @Nullable Layout layout;
+    private
+    @Nullable
+    Layout layout;
     private AtomicReference<Layout> atomicReference = new AtomicReference<>();
 
     /**
      * Create an instance of current class, and set {@link #TEXT_MEASURE_FUNCTION} as the
      * measureFunction
+     *
      * @see CSSNode#setMeasureFunction(CSSNode.MeasureFunction)
      */
     public MyViewDomObject() {
@@ -162,6 +194,7 @@ public class MyViewDomObject extends WXDomObject {
     /**
      * Prepare the text {@link Spanned} for calculating text's size. This is done by setting
      * various text span to the text.
+     *
      * @see android.text.style.CharacterStyle
      */
     @Override
@@ -235,6 +268,7 @@ public class MyViewDomObject extends WXDomObject {
 
     /**
      * Get the content width of the dom.
+     *
      * @return the width of the dom that excludes left-padding and right-padding.
      */
     private float getTextContentWidth() {
@@ -281,6 +315,7 @@ public class MyViewDomObject extends WXDomObject {
 
     /**
      * Record the property according to the given style
+     *
      * @param style the give style.
      */
     private void updateStyleImp(Map<String, Object> style) {
@@ -321,9 +356,10 @@ public class MyViewDomObject extends WXDomObject {
 
     /**
      * Update layout according to {@link #mText} and span
-     * @param width the specified width.
-     * @param forceWidth If true, force the text width to the specified width, otherwise, text width
-     *                   may equals to or be smaller than the specified width.
+     *
+     * @param width          the specified width.
+     * @param forceWidth     If true, force the text width to the specified width, otherwise, text width
+     *                       may equals to or be smaller than the specified width.
      * @param previousLayout the result of previous layout, could be null.
      */
     private
@@ -354,21 +390,23 @@ public class MyViewDomObject extends WXDomObject {
         return layout;
     }
 
-    public @NonNull String truncate(@Nullable String source, @NonNull TextPaint paint,
-                                    int desired, @Nullable TextUtils.TruncateAt truncateAt){
-        if(!TextUtils.isEmpty(source)){
+    public
+    @NonNull
+    String truncate(@Nullable String source, @NonNull TextPaint paint,
+                    int desired, @Nullable TextUtils.TruncateAt truncateAt) {
+        if (!TextUtils.isEmpty(source)) {
             StringBuilder builder;
             Spanned spanned;
             StaticLayout layout;
-            for(int i=source.length();i>0;i--){
-                builder=new StringBuilder(i+1);
+            for (int i = source.length(); i > 0; i--) {
+                builder = new StringBuilder(i + 1);
                 builder.append(source, 0, i);
-                if(truncateAt!=null){
+                if (truncateAt != null) {
                     builder.append(ELLIPSIS);
                 }
                 spanned = createSpanned(builder.toString());
                 layout = new StaticLayout(spanned, paint, desired, Layout.Alignment.ALIGN_NORMAL, 1, 0, true);
-                if(layout.getLineCount()<=1){
+                if (layout.getLineCount() <= 1) {
                     return spanned.toString();
                 }
             }
@@ -378,14 +416,15 @@ public class MyViewDomObject extends WXDomObject {
 
     /**
      * Get text width according to constrain of outerWidth with and forceToDesired
-     * @param textPaint paint used to measure text
-     * @param outerWidth the width that css-layout desired.
+     *
+     * @param textPaint      paint used to measure text
+     * @param outerWidth     the width that css-layout desired.
      * @param forceToDesired if set true, the return value will be outerWidth, no matter what the width
-     *                   of text is.
+     *                       of text is.
      * @return if forceToDesired is false, it will be the minimum value of the width of text and
      * outerWidth in case of outerWidth is defined, in other case, it will be outer width.
      */
-    private float getTextWidth(TextPaint textPaint,float outerWidth, boolean forceToDesired) {
+    private float getTextWidth(TextPaint textPaint, float outerWidth, boolean forceToDesired) {
         float textWidth;
         if (forceToDesired) {
             textWidth = outerWidth;
@@ -402,6 +441,7 @@ public class MyViewDomObject extends WXDomObject {
 
     /**
      * Update {@link #spanned} according to the give charSequence and styles
+     *
      * @param text the give raw text.
      * @return an Spanned contains text and spans
      */
@@ -409,15 +449,31 @@ public class MyViewDomObject extends WXDomObject {
     @NonNull
     Spanned createSpanned(String text) {
         if (!TextUtils.isEmpty(text)) {
-            if (text.contains("{b}")) {
+            if (text.contains("{b}") || text.contains("{u}") || text.contains("{i}") || text.contains("{a}")) {
                 SpannableStringBuilder spannable = new SpannableStringBuilder(text);
-                List<MyViewDomObject.SetSpanOperation> ops = createSetSpanOperation(spannable.length());
+                List<SetSpanOperation> ops = createSetSpanOperation(spannable.length());
                 if (mFontSize == UNSET) {
                     ops.add(new MyViewDomObject.SetSpanOperation(0, spannable.length(),
                             new AbsoluteSizeSpan(WXText.sDEFAULT_SIZE), "normal"));
                 }
 
-                ops.add(new MyViewDomObject.SetSpanOperation("boldSpanOperation"));
+                IndexTrackerHolder indexTrackerHolder = new IndexTrackerHolder();
+
+                if (text.contains("{b}")) {
+                    ops.add(new MyViewDomObject.SetSpanOperation("boldSpanOperation", indexTrackerHolder));
+                }
+
+                if (text.contains("{u}")) {
+                    ops.add(new MyViewDomObject.SetSpanOperation("underlineSpanOperation", indexTrackerHolder));
+                }
+
+                if (text.contains("{i}")) {
+                    ops.add(new MyViewDomObject.SetSpanOperation("italicSpanOperation", indexTrackerHolder));
+                }
+
+                if (text.contains("{a}")) {
+                    ops.add(new MyViewDomObject.SetSpanOperation("anchorSpanOperation", indexTrackerHolder));
+                }
 
                 Collections.reverse(ops);
                 for (MyViewDomObject.SetSpanOperation op : ops) {
@@ -427,6 +483,65 @@ public class MyViewDomObject extends WXDomObject {
                         op.execute(spannable, text);
                     }
                 }
+
+                Pattern anchorPattern = Pattern.compile("(\\{a (href='(([a-z]|[A-Z]|[0-9]|\\?|=|&|\\.|\\:|\\/|\\-|(?: ))+)'\\}))(([a-z]|[A-Z]| |\\-)+)(\\{a\\})");
+                Pattern boldPattern = Pattern.compile("\\{b\\}(.*?)\\{b\\}");
+                Pattern italicPattern = Pattern.compile("\\{i\\}(.*?)\\{i\\}");
+                Pattern underlinePattern = Pattern.compile("\\{u\\}(.*?)\\{u\\}");
+
+                Matcher anchorMatcher = anchorPattern.matcher(text);
+
+                while (anchorMatcher.find()) {
+                    spannable.delete(anchorMatcher.start(1) - indexTrackerHolder.getIndex(),
+                            anchorMatcher.end(1) - indexTrackerHolder.getIndex());
+                    indexTrackerHolder.incrementIndexBy(anchorMatcher.group(1).length());
+
+                    spannable.delete(anchorMatcher.start(7) - indexTrackerHolder.getIndex(),
+                            anchorMatcher.end(7) - indexTrackerHolder.getIndex()).toString();
+                    indexTrackerHolder.incrementIndexBy(anchorMatcher.group(7).length());
+                }
+
+                Matcher boldMatcher = boldPattern.matcher(spannable.toString());
+
+                indexTrackerHolder = new IndexTrackerHolder();
+
+                while (boldMatcher.find()) {
+                    spannable.delete(boldMatcher.start() - indexTrackerHolder.getIndex(),
+                            (boldMatcher.start() + 3 - indexTrackerHolder.getIndex()));
+                    indexTrackerHolder.incrementIndexBy(3);
+                    spannable.delete((boldMatcher.end() - 3) - indexTrackerHolder.getIndex(),
+                            boldMatcher.end() - indexTrackerHolder.getIndex());
+                    indexTrackerHolder.incrementIndexBy(3);
+                }
+
+                Matcher italicMatcher = italicPattern.matcher(spannable.toString());
+
+                indexTrackerHolder = new IndexTrackerHolder();
+
+                while (italicMatcher.find()) {
+                    spannable.delete(italicMatcher.start() - indexTrackerHolder.getIndex(),
+                            (italicMatcher.start() + 3 - indexTrackerHolder.getIndex()));
+                    indexTrackerHolder.incrementIndexBy(3);
+                    spannable.delete((italicMatcher.end() - 3) - indexTrackerHolder.getIndex(),
+                            italicMatcher.end() - indexTrackerHolder.getIndex());
+                    indexTrackerHolder.incrementIndexBy(3);
+                }
+
+                Matcher underlineMatcher = underlinePattern.matcher(spannable.toString());
+
+                indexTrackerHolder = new IndexTrackerHolder();
+
+                while (underlineMatcher.find()) {
+                    spannable.delete(underlineMatcher.start() - indexTrackerHolder.getIndex(),
+                            (underlineMatcher.start() + 3 - indexTrackerHolder.getIndex()));
+                    indexTrackerHolder.incrementIndexBy(3);
+                    spannable.delete((underlineMatcher.end() - 3) - indexTrackerHolder.getIndex(),
+                            underlineMatcher.end() - indexTrackerHolder.getIndex());
+                    indexTrackerHolder.incrementIndexBy(3);
+                }
+
+
+
                 return spannable;
 
             } else {
@@ -450,6 +565,7 @@ public class MyViewDomObject extends WXDomObject {
     /**
      * Create a task list which contains {@link WXTextDomObject.SetSpanOperation}. The task list will be executed
      * in other method.
+     *
      * @param end the end character of the text.
      * @return a task list which contains {@link WXTextDomObject.SetSpanOperation}.
      */
@@ -500,8 +616,9 @@ public class MyViewDomObject extends WXDomObject {
 
     /**
      * As warming up TextLayoutCache done in the DOM thread may manipulate UI operation,
-     there may be some exception, in which case the exception is ignored. After all,
-     this is just a warm up operation.
+     * there may be some exception, in which case the exception is ignored. After all,
+     * this is just a warm up operation.
+     *
      * @return false for warm up failure, otherwise returns true.
      */
     private boolean warmUpTextLayoutCache(Layout layout) {
@@ -514,5 +631,25 @@ public class MyViewDomObject extends WXDomObject {
             result = false;
         }
         return result;
+    }
+
+    public class IndexTrackerHolder {
+        private int index;
+
+        public IndexTrackerHolder() {
+            this(0);
+        }
+
+        public IndexTrackerHolder(int index) {
+            this.index = index;
+        }
+
+        public void incrementIndexBy(int incremementBy) {
+            this.index += incremementBy;
+        }
+
+        public int getIndex() {
+            return this.index;
+        }
     }
 }
