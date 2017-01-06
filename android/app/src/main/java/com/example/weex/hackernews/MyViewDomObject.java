@@ -96,7 +96,7 @@ public class MyViewDomObject extends WXDomObject {
             } else if (type.equals("underlineSpanOperation")) {
                 pattern = Pattern.compile("\\{u\\}(.*?)\\{u\\}");
             } else if (type.equals("anchorSpanOperation")) {
-                pattern = Pattern.compile("(\\{a (href='(([a-z]|[A-Z]|[0-9]|\\?|=|&|\\.|\\:|\\/|\\-|(?: ))+)'\\}))(([a-z]|[A-Z]| |\\-)+)(\\{a\\})");
+                pattern = Pattern.compile("(\\{a (href='(([a-z]|[A-Z]|[0-9]|\\?|=|&|\\.|\\:|\\/|\\-|(?: ))+)'\\}))(([a-z]|[A-Z]| |\\-|,|\\.|\\?|:|')+)(\\{a\\})");
             }
 
             Matcher match = pattern.matcher(value);
@@ -484,7 +484,7 @@ public class MyViewDomObject extends WXDomObject {
                     }
                 }
 
-                Pattern anchorPattern = Pattern.compile("(\\{a (href='(([a-z]|[A-Z]|[0-9]|\\?|=|&|\\.|\\:|\\/|\\-|(?: ))+)'\\}))(([a-z]|[A-Z]| |\\-)+)(\\{a\\})");
+                Pattern anchorPattern = Pattern.compile("(\\{a (href='(([a-z]|[A-Z]|[0-9]|\\?|=|&|\\.|:|/|\\-|(?: ))+)'\\}))(([a-z]|[A-Z]| |\\-|,|\\.|\\?|:|')+)(\\{a\\})");
                 Pattern boldPattern = Pattern.compile("\\{b\\}(.*?)\\{b\\}");
                 Pattern italicPattern = Pattern.compile("\\{i\\}(.*?)\\{i\\}");
                 Pattern underlinePattern = Pattern.compile("\\{u\\}(.*?)\\{u\\}");

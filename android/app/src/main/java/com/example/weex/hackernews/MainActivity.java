@@ -12,6 +12,10 @@ import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.WXSDKManager;
 import com.taobao.weex.utils.WXFileUtils;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class MainActivity extends Activity implements IWXRenderListener {
 
     WXSDKInstance mWXSDKInstance;
@@ -53,6 +57,12 @@ public class MainActivity extends Activity implements IWXRenderListener {
     public void onBackPressed(){
         Log.e("USER ACTION", "BACK");
         WXSDKManager.getInstance().fireEvent(mWXSDKInstance.getInstanceId(),"_root","androidback");
+        Map<String, Object> params = new HashMap<>();
+//        mWXSDKInstance.fireGlobalEventCallback("back",params);
+        List<WXSDKInstance> wxsdkInstances = WXSDKManager.getInstance().getWXRenderManager().getAllInstances();
+        for (WXSDKInstance instance : wxsdkInstances) {
+            instance.fireGlobalEventCallback("back", params);
+        }
     }
 
     @Override
