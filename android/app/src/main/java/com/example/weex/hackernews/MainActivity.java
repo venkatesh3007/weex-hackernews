@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
             setSupportActionBar(toolbar);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close);
             drawer.addDrawerListener(toggle);
-            toggle.syncState();
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toggle.syncState();
         }
     }
 

@@ -211,6 +211,7 @@ import android.widget.FrameLayout;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.Constants;
 import com.taobao.weex.dom.WXDomObject;
+import com.taobao.weex.ui.component.list.WXListComponent;
 
 import java.util.ArrayList;
 
@@ -303,11 +304,7 @@ public abstract class WXVContainer<T extends ViewGroup> extends WXComponent<T> {
     if(lp == null) {
       lp = new ViewGroup.LayoutParams(width,height);
     }else{
-      if ((child instanceof WXEmbed || child instanceof WXDiv) && (height == 0 || height == -1)) {
-        lp.height = FrameLayout.LayoutParams.MATCH_PARENT;
-      } else {
-        lp.height = height;
-      }
+      lp.height = height;
       lp.width = width;
       if(lp instanceof ViewGroup.MarginLayoutParams){
         ((ViewGroup.MarginLayoutParams) lp).setMargins(left,top,right,bottom);
@@ -392,6 +389,9 @@ public abstract class WXVContainer<T extends ViewGroup> extends WXComponent<T> {
   }
 
   public WXComponent getChild(int index) {
+    if (mChildren.size() == 0) {
+      mChildren.size();
+    }
     return mChildren.get(index);
   }
 

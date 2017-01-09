@@ -44,9 +44,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(4)
-	var __weex_style__ = __webpack_require__(5)
-	var __weex_script__ = __webpack_require__(6)
+	var __weex_template__ = __webpack_require__(91)
+	var __weex_style__ = __webpack_require__(92)
+	var __weex_script__ = __webpack_require__(93)
 
 	__weex_define__('@weex-component/af3133d79ccd018036a9c37506662ba2', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -67,295 +67,55 @@
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */
-/***/ function(module, exports) {
-
-	module.exports = {
-	  "type": "mydrawerlayout",
-	  "events": {
-	    "androidback": "back"
-	  },
-	  "children": [
-	    {
-	      "type": "mypageview",
-	      "attr": {
-	        "primarycolor": "#f44336"
-	      },
-	      "children": [
-	        {
-	          "type": "toolbar",
-	          "classList": [
-	            "toolbar"
-	          ],
-	          "children": [
-	            {
-	              "type": "text",
-	              "classList": [
-	                "header"
-	              ],
-	              "attr": {
-	                "value": "Economic Times"
-	              }
-	            }
-	          ]
-	        },
-	        {
-	          "type": "mypageitem",
-	          "repeat": function () {return this.pageItems},
-	          "attr": {
-	            "title": function () {return this.title}
-	          },
-	          "children": [
-	            {
-	              "type": "div",
-	              "style": {
-	                "flex": 1
-	              },
-	              "children": [
-	                {
-	                  "type": "embed",
-	                  "classList": [
-	                    "content"
-	                  ],
-	                  "style": {
-	                    "visibility": "visible"
-	                  },
-	                  "attr": {
-	                    "src": function () {return this.src},
-	                    "type": "weex"
-	                  }
-	                }
-	              ]
-	            }
-	          ]
-	        }
-	      ]
-	    },
-	    {
-	      "type": "mydrawerview",
-	      "attr": {
-	        "alignment": "left"
-	      },
-	      "style": {
-	        "flex": 1,
-	        "backgroundColor": "#FFFFFF",
-	        "position": "absolute",
-	        "top": 0,
-	        "bottom": 0
-	      },
-	      "children": [
-	        {
-	          "type": "div",
-	          "style": {
-	            "flex": 1
-	          },
-	          "children": [
-	            {
-	              "type": "embed",
-	              "id": "newsListElement",
-	              "classList": [
-	                "content"
-	              ],
-	              "style": {
-	                "visibility": "visible"
-	              },
-	              "attr": {
-	                "src": "https://s3.ap-south-1.amazonaws.com/uploader-assets/menubar.js",
-	                "type": "weex"
-	              }
-	            }
-	          ]
-	        }
-	      ]
-	    }
-	  ]
-	}
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = {
-	  "wrapper": {
-	    "width": 750,
-	    "position": "absolute",
-	    "top": 0,
-	    "left": 0,
-	    "right": 0,
-	    "bottom": 0
-	  },
-	  "content": {
-	    "width": 750,
-	    "flex": 1
-	  },
-	  "item": {
-	    "justifyContent": "center",
-	    "height": 100,
-	    "padding": 20
-	  },
-	  "mytitle": {
-	    "color": "#000000",
-	    "fontSize": 50
-	  },
-	  "toolbar": {
-	    "fontSize": 50,
-	    "flexDirection": "row",
-	    "justifyContent": "flex-start"
-	  },
-	  "header": {
-	    "color": "#FFFFFF",
-	    "fontSize": 30
-	  },
-	  "flexRow": {
-	    "flexDirection": "row"
-	  },
-	  "flexColumn": {
-	    "flexDirection": "column"
-	  },
-	  "fixed": {
-	    "position": "fixed",
-	    "bottom": 50,
-	    "left": 50,
-	    "width": 300,
-	    "height": 50,
-	    "alignItems": "center",
-	    "justifyContent": "center"
-	  },
-	  "shopImg": {
-	    "width": 220,
-	    "height": 220
-	  },
-	  "list": {
-	    "flexDirection": "column",
-	    "overflow": "hidden",
-	    "width": 750,
-	    "height": 1200,
-	    "backgroundColor": "#dddddd"
-	  },
-	  "cell": {
-	    "backgroundColor": "#dddddd",
-	    "flexDirection": "column",
-	    "width": 750
-	  },
-	  "shopDiv": {
-	    "flexDirection": "column",
-	    "backgroundColor": "#ffffff",
-	    "margin": 5,
-	    "padding": 10,
-	    "borderWidth": 1,
-	    "borderColor": "#cccccc",
-	    "overflow": "visible"
-	  },
-	  "shopRowList": {
-	    "flexDirection": "column",
-	    "borderWidth": 1,
-	    "borderColor": "#cccccc",
-	    "overflow": "visible",
-	    "margin": 5,
-	    "padding": 10,
-	    "backgroundColor": "#ffffff"
-	  },
-	  "shopHeader": {
-	    "flexDirection": "row",
-	    "width": 720
-	  },
-	  "shopFooter": {
-	    "flexDirection": "row",
-	    "width": 720
-	  },
-	  "smallImg": {
-	    "width": 20,
-	    "height": 20
-	  },
-	  "refresh-view": {
-	    "height": 120,
-	    "width": 750,
-	    "display": "flex",
-	    "MsFlexAlign": "center",
-	    "WebkitAlignItems": "center",
-	    "WebkitBoxAlign": "center",
-	    "alignItems": "center"
-	  }
-	}
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = function(module, exports, __weex_require__){'use strict';
-
-	__webpack_require__(7);
-
-	module.exports = {
-
-	  data: function () {return {
-	    imageUrl: 'https://cdn.photographylife.com/wp-content/uploads/2012/01/Nikon-500mm-f4-Sample-4-960x638.jpg',
-	    pageItems: [{
-	      title: "EconomicTimes",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-et.js"
-	    }, {
-	      title: "MoneyControl",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-mc.js"
-	    }, {
-	      title: "WashingtonTimes",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-wt.js"
-	    }, {
-	      title: "MF",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-et.js"
-	    }, {
-	      title: "StartUps",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-mc.js"
-	    }, {
-	      title: "Videos",
-	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-wt.js"
-	    }]
-	  }},
-	  created: function created() {
-	    var globalEvent = __weex_require__('@weex-module/globalEvent');
-	    globalEvent.addEventListener("back", function (e) {
-	      console.log("Global back event");
-	    });
-
-	    globalEvent.addEventListener("itemSelected", function (event) {
-	      console.log("Item Selected event");
-	    });
-	  },
-	  methods: {
-	    back: function back() {
-	      console.log("back button pressed!");
-	      this.$broadcast('goBack', {
-	        to: "Hello"
-	      });
-	    }
-	  }
-	};}
-	/* generated by weex-loader */
-
-
-/***/ },
+/* 4 */,
+/* 5 */,
+/* 6 */,
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(8);
-	__webpack_require__(12);
-	__webpack_require__(16);
-	__webpack_require__(20);
-	__webpack_require__(24);
-	__webpack_require__(28);
-	__webpack_require__(69);
-	__webpack_require__(73);
-	__webpack_require__(77);
-	__webpack_require__(81);
-	__webpack_require__(82);
-
+	module.exports = { "default": __webpack_require__(8), __esModule: true };
 
 /***/ },
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(9)
-	var __weex_style__ = __webpack_require__(10)
-	var __weex_script__ = __webpack_require__(11)
+	var core  = __webpack_require__(9)
+	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	var core = module.exports = {version: '2.4.0'};
+	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(11);
+	__webpack_require__(15);
+	__webpack_require__(19);
+	__webpack_require__(23);
+	__webpack_require__(27);
+	__webpack_require__(31);
+	__webpack_require__(71);
+	__webpack_require__(75);
+	__webpack_require__(79);
+	__webpack_require__(83);
+	__webpack_require__(84);
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __weex_template__ = __webpack_require__(12)
+	var __weex_style__ = __webpack_require__(13)
+	var __weex_script__ = __webpack_require__(14)
 
 	__weex_define__('@weex-component/wxc-button', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -372,7 +132,7 @@
 
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -390,7 +150,7 @@
 	}
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -489,7 +249,7 @@
 	}
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -506,12 +266,12 @@
 
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(13)
-	var __weex_style__ = __webpack_require__(14)
-	var __weex_script__ = __webpack_require__(15)
+	var __weex_template__ = __webpack_require__(16)
+	var __weex_style__ = __webpack_require__(17)
+	var __weex_script__ = __webpack_require__(18)
 
 	__weex_define__('@weex-component/wxc-hn', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -528,7 +288,7 @@
 
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -549,7 +309,7 @@
 	}
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -580,7 +340,7 @@
 	}
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -596,12 +356,12 @@
 
 
 /***/ },
-/* 16 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(17)
-	var __weex_style__ = __webpack_require__(18)
-	var __weex_script__ = __webpack_require__(19)
+	var __weex_template__ = __webpack_require__(20)
+	var __weex_style__ = __webpack_require__(21)
+	var __weex_script__ = __webpack_require__(22)
 
 	__weex_define__('@weex-component/wxc-list-item', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -618,7 +378,7 @@
 
 
 /***/ },
-/* 17 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -641,7 +401,7 @@
 	}
 
 /***/ },
-/* 18 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -658,7 +418,7 @@
 	}
 
 /***/ },
-/* 19 */
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -676,12 +436,12 @@
 
 
 /***/ },
-/* 20 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(21)
-	var __weex_style__ = __webpack_require__(22)
-	var __weex_script__ = __webpack_require__(23)
+	var __weex_template__ = __webpack_require__(24)
+	var __weex_style__ = __webpack_require__(25)
+	var __weex_script__ = __webpack_require__(26)
 
 	__weex_define__('@weex-component/wxc-panel', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -698,7 +458,7 @@
 
 
 /***/ },
-/* 21 */
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -740,7 +500,7 @@
 	}
 
 /***/ },
-/* 22 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -794,7 +554,7 @@
 	}
 
 /***/ },
-/* 23 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -814,12 +574,12 @@
 
 
 /***/ },
-/* 24 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(25)
-	var __weex_style__ = __webpack_require__(26)
-	var __weex_script__ = __webpack_require__(27)
+	var __weex_template__ = __webpack_require__(28)
+	var __weex_style__ = __webpack_require__(29)
+	var __weex_script__ = __webpack_require__(30)
 
 	__weex_define__('@weex-component/wxc-tip', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -836,7 +596,7 @@
 
 
 /***/ },
-/* 25 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -854,7 +614,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -899,7 +659,7 @@
 	}
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -914,12 +674,12 @@
 
 
 /***/ },
-/* 28 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(29)
-	var __weex_style__ = __webpack_require__(30)
-	var __weex_script__ = __webpack_require__(31)
+	var __weex_template__ = __webpack_require__(32)
+	var __weex_style__ = __webpack_require__(33)
+	var __weex_script__ = __webpack_require__(34)
 
 	__weex_define__('@weex-component/wxc-countdown', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -936,7 +696,7 @@
 
 
 /***/ },
-/* 29 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -957,7 +717,7 @@
 	}
 
 /***/ },
-/* 30 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -967,12 +727,12 @@
 	}
 
 /***/ },
-/* 31 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
 
-	var _assign = __webpack_require__(32);
+	var _assign = __webpack_require__(35);
 
 	var _assign2 = _interopRequireDefault(_assign);
 
@@ -1066,35 +826,35 @@
 
 
 /***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(33), __esModule: true };
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(34);
-	module.exports = __webpack_require__(37).Object.assign;
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// 19.1.3.1 Object.assign(target, source)
-	var $export = __webpack_require__(35);
-
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(50)});
-
-/***/ },
 /* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(36)
-	  , core      = __webpack_require__(37)
-	  , ctx       = __webpack_require__(38)
-	  , hide      = __webpack_require__(40)
+	module.exports = { "default": __webpack_require__(36), __esModule: true };
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(37);
+	module.exports = __webpack_require__(9).Object.assign;
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.3.1 Object.assign(target, source)
+	var $export = __webpack_require__(38);
+
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(52)});
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var global    = __webpack_require__(39)
+	  , core      = __webpack_require__(9)
+	  , ctx       = __webpack_require__(40)
+	  , hide      = __webpack_require__(42)
 	  , PROTOTYPE = 'prototype';
 
 	var $export = function(type, name, source){
@@ -1154,7 +914,7 @@
 	module.exports = $export;
 
 /***/ },
-/* 36 */
+/* 39 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -1163,18 +923,11 @@
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 37 */
-/***/ function(module, exports) {
-
-	var core = module.exports = {version: '2.4.0'};
-	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(39);
+	var aFunction = __webpack_require__(41);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -1195,7 +948,7 @@
 	};
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -1204,12 +957,12 @@
 	};
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var dP         = __webpack_require__(41)
-	  , createDesc = __webpack_require__(49);
-	module.exports = __webpack_require__(45) ? function(object, key, value){
+	var dP         = __webpack_require__(43)
+	  , createDesc = __webpack_require__(51);
+	module.exports = __webpack_require__(47) ? function(object, key, value){
 	  return dP.f(object, key, createDesc(1, value));
 	} : function(object, key, value){
 	  object[key] = value;
@@ -1217,15 +970,15 @@
 	};
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var anObject       = __webpack_require__(42)
-	  , IE8_DOM_DEFINE = __webpack_require__(44)
-	  , toPrimitive    = __webpack_require__(48)
+	var anObject       = __webpack_require__(44)
+	  , IE8_DOM_DEFINE = __webpack_require__(46)
+	  , toPrimitive    = __webpack_require__(50)
 	  , dP             = Object.defineProperty;
 
-	exports.f = __webpack_require__(45) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+	exports.f = __webpack_require__(47) ? Object.defineProperty : function defineProperty(O, P, Attributes){
 	  anObject(O);
 	  P = toPrimitive(P, true);
 	  anObject(Attributes);
@@ -1238,17 +991,17 @@
 	};
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(43);
+	var isObject = __webpack_require__(45);
 	module.exports = function(it){
 	  if(!isObject(it))throw TypeError(it + ' is not an object!');
 	  return it;
 	};
 
 /***/ },
-/* 43 */
+/* 45 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -1256,24 +1009,24 @@
 	};
 
 /***/ },
-/* 44 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = !__webpack_require__(45) && !__webpack_require__(46)(function(){
-	  return Object.defineProperty(__webpack_require__(47)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+	module.exports = !__webpack_require__(47) && !__webpack_require__(48)(function(){
+	  return Object.defineProperty(__webpack_require__(49)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
-/* 45 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(46)(function(){
+	module.exports = !__webpack_require__(48)(function(){
 	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
-/* 46 */
+/* 48 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -1285,11 +1038,11 @@
 	};
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(43)
-	  , document = __webpack_require__(36).document
+	var isObject = __webpack_require__(45)
+	  , document = __webpack_require__(39).document
 	  // in old IE typeof document.createElement is 'object'
 	  , is = isObject(document) && isObject(document.createElement);
 	module.exports = function(it){
@@ -1297,11 +1050,11 @@
 	};
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
-	var isObject = __webpack_require__(43);
+	var isObject = __webpack_require__(45);
 	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 	// and the second argument - flag - preferred type is a string
 	module.exports = function(it, S){
@@ -1314,7 +1067,7 @@
 	};
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports) {
 
 	module.exports = function(bitmap, value){
@@ -1327,20 +1080,20 @@
 	};
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var getKeys  = __webpack_require__(51)
-	  , gOPS     = __webpack_require__(66)
-	  , pIE      = __webpack_require__(67)
-	  , toObject = __webpack_require__(68)
-	  , IObject  = __webpack_require__(55)
+	var getKeys  = __webpack_require__(53)
+	  , gOPS     = __webpack_require__(68)
+	  , pIE      = __webpack_require__(69)
+	  , toObject = __webpack_require__(70)
+	  , IObject  = __webpack_require__(57)
 	  , $assign  = Object.assign;
 
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = !$assign || __webpack_require__(46)(function(){
+	module.exports = !$assign || __webpack_require__(48)(function(){
 	  var A = {}
 	    , B = {}
 	    , S = Symbol()
@@ -1365,25 +1118,25 @@
 	} : $assign;
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys       = __webpack_require__(52)
-	  , enumBugKeys = __webpack_require__(65);
+	var $keys       = __webpack_require__(54)
+	  , enumBugKeys = __webpack_require__(67);
 
 	module.exports = Object.keys || function keys(O){
 	  return $keys(O, enumBugKeys);
 	};
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var has          = __webpack_require__(53)
-	  , toIObject    = __webpack_require__(54)
-	  , arrayIndexOf = __webpack_require__(58)(false)
-	  , IE_PROTO     = __webpack_require__(62)('IE_PROTO');
+	var has          = __webpack_require__(55)
+	  , toIObject    = __webpack_require__(56)
+	  , arrayIndexOf = __webpack_require__(60)(false)
+	  , IE_PROTO     = __webpack_require__(64)('IE_PROTO');
 
 	module.exports = function(object, names){
 	  var O      = toIObject(object)
@@ -1399,7 +1152,7 @@
 	};
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
@@ -1408,28 +1161,28 @@
 	};
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(55)
-	  , defined = __webpack_require__(57);
+	var IObject = __webpack_require__(57)
+	  , defined = __webpack_require__(59);
 	module.exports = function(it){
 	  return IObject(defined(it));
 	};
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
-	var cof = __webpack_require__(56);
+	var cof = __webpack_require__(58);
 	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
 	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -1439,7 +1192,7 @@
 	};
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -1449,14 +1202,14 @@
 	};
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
-	var toIObject = __webpack_require__(54)
-	  , toLength  = __webpack_require__(59)
-	  , toIndex   = __webpack_require__(61);
+	var toIObject = __webpack_require__(56)
+	  , toLength  = __webpack_require__(61)
+	  , toIndex   = __webpack_require__(63);
 	module.exports = function(IS_INCLUDES){
 	  return function($this, el, fromIndex){
 	    var O      = toIObject($this)
@@ -1475,18 +1228,18 @@
 	};
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(60)
+	var toInteger = __webpack_require__(62)
 	  , min       = Math.min;
 	module.exports = function(it){
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports) {
 
 	// 7.1.4 ToInteger
@@ -1497,10 +1250,10 @@
 	};
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(60)
+	var toInteger = __webpack_require__(62)
 	  , max       = Math.max
 	  , min       = Math.min;
 	module.exports = function(index, length){
@@ -1509,20 +1262,20 @@
 	};
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var shared = __webpack_require__(63)('keys')
-	  , uid    = __webpack_require__(64);
+	var shared = __webpack_require__(65)('keys')
+	  , uid    = __webpack_require__(66);
 	module.exports = function(key){
 	  return shared[key] || (shared[key] = uid(key));
 	};
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(36)
+	var global = __webpack_require__(39)
 	  , SHARED = '__core-js_shared__'
 	  , store  = global[SHARED] || (global[SHARED] = {});
 	module.exports = function(key){
@@ -1530,7 +1283,7 @@
 	};
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports) {
 
 	var id = 0
@@ -1540,7 +1293,7 @@
 	};
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports) {
 
 	// IE 8- don't enum bug keys
@@ -1549,34 +1302,34 @@
 	).split(',');
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(57);
+	var defined = __webpack_require__(59);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(70)
-	var __weex_style__ = __webpack_require__(71)
-	var __weex_script__ = __webpack_require__(72)
+	var __weex_template__ = __webpack_require__(72)
+	var __weex_style__ = __webpack_require__(73)
+	var __weex_script__ = __webpack_require__(74)
 
 	__weex_define__('@weex-component/wxc-marquee', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -1593,7 +1346,7 @@
 
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1622,7 +1375,7 @@
 	}
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1638,7 +1391,7 @@
 	}
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -1699,12 +1452,12 @@
 
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(74)
-	var __weex_style__ = __webpack_require__(75)
-	var __weex_script__ = __webpack_require__(76)
+	var __weex_template__ = __webpack_require__(76)
+	var __weex_style__ = __webpack_require__(77)
+	var __weex_script__ = __webpack_require__(78)
 
 	__weex_define__('@weex-component/wxc-navbar', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -1721,7 +1474,7 @@
 
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1816,7 +1569,7 @@
 	}
 
 /***/ },
-/* 75 */
+/* 77 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1870,7 +1623,7 @@
 	}
 
 /***/ },
-/* 76 */
+/* 78 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -1912,13 +1665,13 @@
 
 
 /***/ },
-/* 77 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(73)
-	var __weex_template__ = __webpack_require__(78)
-	var __weex_style__ = __webpack_require__(79)
-	var __weex_script__ = __webpack_require__(80)
+	__webpack_require__(75)
+	var __weex_template__ = __webpack_require__(80)
+	var __weex_style__ = __webpack_require__(81)
+	var __weex_script__ = __webpack_require__(82)
 
 	__weex_define__('@weex-component/wxc-navpage', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -1935,7 +1688,7 @@
 
 
 /***/ },
-/* 78 */
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1978,7 +1731,7 @@
 	}
 
 /***/ },
-/* 79 */
+/* 81 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1993,7 +1746,7 @@
 	}
 
 /***/ },
-/* 80 */
+/* 82 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -2017,13 +1770,13 @@
 
 
 /***/ },
-/* 81 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(82)
-	var __weex_template__ = __webpack_require__(86)
-	var __weex_style__ = __webpack_require__(87)
-	var __weex_script__ = __webpack_require__(88)
+	__webpack_require__(84)
+	var __weex_template__ = __webpack_require__(88)
+	var __weex_style__ = __webpack_require__(89)
+	var __weex_script__ = __webpack_require__(90)
 
 	__weex_define__('@weex-component/wxc-tabbar', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -2040,12 +1793,12 @@
 
 
 /***/ },
-/* 82 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __weex_template__ = __webpack_require__(83)
-	var __weex_style__ = __webpack_require__(84)
-	var __weex_script__ = __webpack_require__(85)
+	var __weex_template__ = __webpack_require__(85)
+	var __weex_style__ = __webpack_require__(86)
+	var __weex_script__ = __webpack_require__(87)
 
 	__weex_define__('@weex-component/wxc-tabitem', [], function(__weex_require__, __weex_exports__, __weex_module__) {
 
@@ -2062,7 +1815,7 @@
 
 
 /***/ },
-/* 83 */
+/* 85 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2111,7 +1864,7 @@
 	}
 
 /***/ },
-/* 84 */
+/* 86 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2142,7 +1895,7 @@
 	}
 
 /***/ },
-/* 85 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -2169,7 +1922,7 @@
 
 
 /***/ },
-/* 86 */
+/* 88 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2215,7 +1968,7 @@
 	}
 
 /***/ },
-/* 87 */
+/* 89 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2247,7 +2000,7 @@
 	}
 
 /***/ },
-/* 88 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, __weex_require__){'use strict';
@@ -2287,6 +2040,569 @@
 	          tabItem.visibility = 'hidden';
 	        }
 	      }
+	    }
+	  }
+	};}
+	/* generated by weex-loader */
+
+
+/***/ },
+/* 91 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  "type": "mydrawerlayout",
+	  "events": {
+	    "androidback": "back"
+	  },
+	  "children": [
+	    {
+	      "type": "mypageview",
+	      "attr": {
+	        "primarycolor": "#f44336"
+	      },
+	      "children": [
+	        {
+	          "type": "toolbar",
+	          "classList": [
+	            "toolbar"
+	          ],
+	          "children": [
+	            {
+	              "type": "text",
+	              "classList": [
+	                "header"
+	              ],
+	              "attr": {
+	                "value": "Economic Times"
+	              }
+	            }
+	          ]
+	        },
+	        {
+	          "type": "mypageitem",
+	          "style": {
+	            "position": "absolute",
+	            "top": 0,
+	            "bottom": 0
+	          },
+	          "repeat": function () {return this.subCategories},
+	          "attr": {
+	            "title": function () {return this.name}
+	          },
+	          "children": [
+	            {
+	              "type": "list",
+	              "classList": [
+	                "news-list"
+	              ],
+	              "shown": function () {return this.showList},
+	              "attr": {
+	                "loadmoreoffset": "2000"
+	              },
+	              "children": [
+	                {
+	                  "type": "cell",
+	                  "append": "tree",
+	                  "classList": [
+	                    "row"
+	                  ],
+	                  "repeat": function () {return this.newsitems},
+	                  "events": {
+	                    "click": function ($event) {this.showSelectedNews(this.js_path,$event)}
+	                  },
+	                  "attr": {
+	                    "index": "{{}}"
+	                  },
+	                  "children": [
+	                    {
+	                      "type": "div",
+	                      "classList": [
+	                        "news-list-item"
+	                      ],
+	                      "children": [
+	                        {
+	                          "type": "image",
+	                          "attr": {
+	                            "src": function () {return this.urlToImage},
+	                            "resize": "cover"
+	                          },
+	                          "classList": [
+	                            "list-image"
+	                          ]
+	                        },
+	                        {
+	                          "type": "div",
+	                          "classList": [
+	                            "news-list-rightcontent"
+	                          ],
+	                          "children": [
+	                            {
+	                              "type": "text",
+	                              "classList": [
+	                                "news-item-title"
+	                              ],
+	                              "attr": {
+	                                "value": function () {return this.title}
+	                              }
+	                            },
+	                            {
+	                              "type": "div",
+	                              "classList": [
+	                                "list-timericon-time"
+	                              ],
+	                              "children": [
+	                                {
+	                                  "type": "image",
+	                                  "attr": {
+	                                    "src": "https://s29.postimg.org/l9igr6ztj/Clock_48.png"
+	                                  },
+	                                  "classList": [
+	                                    "list-timer-icon"
+	                                  ]
+	                                },
+	                                {
+	                                  "type": "text",
+	                                  "classList": [
+	                                    "list-time"
+	                                  ],
+	                                  "attr": {
+	                                    "value": function () {return this.timeAgo(this.created_at)}
+	                                  }
+	                                }
+	                              ]
+	                            }
+	                          ]
+	                        }
+	                      ]
+	                    }
+	                  ]
+	                }
+	              ]
+	            }
+	          ]
+	        }
+	      ]
+	    },
+	    {
+	      "type": "mydrawerview",
+	      "attr": {
+	        "alignment": "left"
+	      },
+	      "style": {
+	        "backgroundColor": "#FFFFFF",
+	        "position": "absolute",
+	        "top": 0,
+	        "bottom": 0
+	      },
+	      "children": [
+	        {
+	          "type": "div",
+	          "classList": [
+	            "drawer-list"
+	          ],
+	          "children": [
+	            {
+	              "type": "div",
+	              "classList": [
+	                "m-header"
+	              ],
+	              "children": [
+	                {
+	                  "type": "text",
+	                  "classList": [
+	                    "m-head-title"
+	                  ],
+	                  "attr": {
+	                    "value": function () {return this.menutitle}
+	                  }
+	                }
+	              ]
+	            },
+	            {
+	              "type": "div",
+	              "classList": [
+	                "news-cat-text"
+	              ],
+	              "children": [
+	                {
+	                  "type": "text",
+	                  "classList": [
+	                    "m-cathead-title"
+	                  ],
+	                  "attr": {
+	                    "value": function () {return this.categoriesheading}
+	                  }
+	                }
+	              ]
+	            },
+	            {
+	              "type": "div",
+	              "repeat": {
+	                "expression": function () {return this.categoryitems},
+	                "value": "v"
+	              },
+	              "children": [
+	                {
+	                  "type": "div",
+	                  "classList": [
+	                    "drawer-list-item"
+	                  ],
+	                  "attr": {
+	                    "value": function () {return this.v}
+	                  },
+	                  "events": {
+	                    "click": function ($event) {this.changeNewsCategory(this.v,$event)}
+	                  },
+	                  "children": [
+	                    {
+	                      "type": "text",
+	                      "classList": [
+	                        "drawer-item-title"
+	                      ],
+	                      "attr": {
+	                        "value": function () {return this.v.name}
+	                      }
+	                    }
+	                  ]
+	                }
+	              ]
+	            }
+	          ]
+	        }
+	      ]
+	    }
+	  ]
+	}
+
+/***/ },
+/* 92 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  "m-header": {
+	    "textAlign": "center",
+	    "alignContent": "center",
+	    "paddingTop": 55,
+	    "paddingBottom": 55,
+	    "backgroundColor": "#FF0000",
+	    "width": 750,
+	    "color": "#ffffff",
+	    "position": "relative"
+	  },
+	  "m-cathead-title": {
+	    "color": "#a0a09f",
+	    "fontSize": 28,
+	    "fontWeight": "bold",
+	    "width": 750,
+	    "paddingTop": 40,
+	    "paddingBottom": 10,
+	    "paddingLeft": 50
+	  },
+	  "m-head-title": {
+	    "color": "#ffffff",
+	    "textAlign": "center",
+	    "fontSize": 38,
+	    "fontWeight": "bold",
+	    "width": 750
+	  },
+	  "count": {
+	    "fontSize": 48,
+	    "margin": 10
+	  },
+	  "indicator": {
+	    "height": 40,
+	    "width": 40,
+	    "color": "#45b5f0"
+	  },
+	  "row": {
+	    "flexDirection": "column",
+	    "width": 750
+	  },
+	  "drawer-list-rightcontent": {
+	    "paddingLeft": 25,
+	    "flex": 1
+	  },
+	  "drawer-list-item": {
+	    "justifyContent": "flex-start",
+	    "borderBottomWidth": 1,
+	    "borderBottomColor": "#f0f0f0",
+	    "paddingLeft": 50,
+	    "paddingRight": 20,
+	    "paddingTop": 30,
+	    "paddingBottom": 30,
+	    "flexDirection": "row"
+	  },
+	  "drawer-item-title": {
+	    "fontSize": 32,
+	    "fontWeight": "bold",
+	    "color": "#231f20"
+	  },
+	  "wrapper": {
+	    "width": 750,
+	    "position": "absolute",
+	    "top": 0,
+	    "left": 0,
+	    "right": 0,
+	    "bottom": 0
+	  },
+	  "drawercontent": {
+	    "width": 750,
+	    "flex": 1
+	  },
+	  "item": {
+	    "justifyContent": "center",
+	    "height": 100,
+	    "padding": 20
+	  },
+	  "mytitle": {
+	    "color": "#000000",
+	    "fontSize": 50
+	  },
+	  "toolbar": {
+	    "fontSize": 50,
+	    "flexDirection": "row",
+	    "justifyContent": "flex-start"
+	  },
+	  "header": {
+	    "color": "#FFFFFF",
+	    "fontSize": 30
+	  },
+	  "flexRow": {
+	    "flexDirection": "row"
+	  },
+	  "flexColumn": {
+	    "flexDirection": "column"
+	  },
+	  "fixed": {
+	    "position": "fixed",
+	    "bottom": 50,
+	    "left": 50,
+	    "width": 300,
+	    "height": 50,
+	    "alignItems": "center",
+	    "justifyContent": "center"
+	  },
+	  "shopImg": {
+	    "width": 220,
+	    "height": 220
+	  },
+	  "drawer-list": {
+	    "flexDirection": "column",
+	    "overflow": "hidden",
+	    "width": 750,
+	    "backgroundColor": "#FFFFFF"
+	  },
+	  "cell": {
+	    "backgroundColor": "#FFFFFF",
+	    "flexDirection": "column",
+	    "width": 750
+	  },
+	  "shopDiv": {
+	    "flexDirection": "column",
+	    "backgroundColor": "#ffffff",
+	    "margin": 5,
+	    "padding": 10,
+	    "borderWidth": 1,
+	    "borderColor": "#cccccc",
+	    "overflow": "visible"
+	  },
+	  "shopRowList": {
+	    "flexDirection": "column",
+	    "borderWidth": 1,
+	    "borderColor": "#cccccc",
+	    "overflow": "visible",
+	    "margin": 5,
+	    "padding": 10,
+	    "backgroundColor": "#ffffff"
+	  },
+	  "shopHeader": {
+	    "flexDirection": "row",
+	    "width": 720
+	  },
+	  "shopFooter": {
+	    "flexDirection": "row",
+	    "width": 720
+	  },
+	  "smallImg": {
+	    "width": 20,
+	    "height": 20
+	  },
+	  "refresh-view": {
+	    "height": 120,
+	    "width": 750,
+	    "display": "flex",
+	    "MsFlexAlign": "center",
+	    "WebkitAlignItems": "center",
+	    "WebkitBoxAlign": "center",
+	    "alignItems": "center"
+	  },
+	  "content": {
+	    "position": "absolute",
+	    "top": 0,
+	    "left": 0,
+	    "right": 0,
+	    "bottom": 0,
+	    "marginTop": 0
+	  },
+	  "news-list": {
+	    "backgroundColor": "#FFFFFF",
+	    "flexDirection": "column",
+	    "overflow": "hidden",
+	    "marginBottom": 100,
+	    "width": 750,
+	    "flex": 1
+	  },
+	  "list-image": {
+	    "height": 130,
+	    "width": 245
+	  },
+	  "news-list-rightcontent": {
+	    "paddingLeft": 25,
+	    "flex": 1
+	  },
+	  "news-list-item": {
+	    "justifyContent": "flex-start",
+	    "borderBottomWidth": 4,
+	    "borderBottomColor": "#ededed",
+	    "paddingLeft": 20,
+	    "paddingRight": 20,
+	    "paddingTop": 20,
+	    "paddingBottom": 40,
+	    "flexDirection": "row"
+	  },
+	  "news-item-title": {
+	    "fontSize": 30
+	  },
+	  "list-timericon-time": {
+	    "flexDirection": "row",
+	    "marginTop": 10,
+	    "fontSize": 12
+	  },
+	  "list-time": {
+	    "color": "#c0c0c0",
+	    "paddingLeft": 10,
+	    "fontSize": 24
+	  },
+	  "list-timer-icon": {
+	    "height": 28,
+	    "width": 28,
+	    "marginTop": 2
+	  }
+	}
+
+/***/ },
+/* 93 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function(module, exports, __weex_require__){'use strict';
+
+	var _stringify = __webpack_require__(7);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(10);
+
+	module.exports = {
+
+	  data: function () {return {
+	    newsitems: [],
+	    selectedNews: null,
+	    newdate: '',
+	    menutitle: 'The Economic Times',
+	    categoriesheading: 'News Categories',
+	    categoryitems: [],
+	    subCategories: [],
+	    selectedCategory: null,
+	    defaultCategory: null,
+	    imageUrl: 'https://cdn.photographylife.com/wp-content/uploads/2012/01/Nikon-500mm-f4-Sample-4-960x638.jpg',
+	    pageItems: [{
+	      title: "EconomicTimes",
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-et.js"
+	    }, {
+	      title: "MoneyControl",
+	      src: "https://s3.ap-south-1.amazonaws.com/uploader-assets/sample-list-mc.js"
+	    }]
+	  }},
+	  computed: {
+	    showList: {
+	      get: function get() {
+	        return this.selectedNews == null;
+	      }
+	    },
+
+	    showContent: {
+	      get: function get() {
+	        return this.selectedNews != null;
+	      }
+	    }
+	  },
+	  created: function created() {
+	    var globalEvent = __weex_require__('@weex-module/globalEvent');
+	    globalEvent.addEventListener("back", function (e) {
+	      console.log("Global back event");
+	    });
+
+	    globalEvent.addEventListener("itemSelected", function (event) {
+	      console.log("Item Selected event");
+	    });
+	  },
+	  ready: function ready() {
+	    var stream = __weex_require__('@weex-module/stream');
+	    var me = this;
+
+	    var new_url = 'http://asiatrotter.org:5111/api/categories/economictimes';
+	    stream.fetch({
+	      method: 'GET',
+	      url: new_url,
+	      type: 'json'
+	    }, function (response) {
+	      me.categoryitems = response.data.categories;
+	    }, function (response) {
+	      console.log("current bytes received:" + response);
+	    });
+	  },
+	  methods: {
+	    showSelectedNews: function showSelectedNews(selectedNews) {
+	      this.selectedNews = selectedNews;
+	    },
+	    changeNewsCategory: function changeNewsCategory(v) {
+	      var data = {
+	        selected_category_name: v.name,
+	        selected_category_url: v.url
+	      };
+	      this.subCategories = [];
+	      this.subCategories = v.sub_categories;
+	      this.selectedCategory = v;
+	      var draweritemsmanager = __weex_require__('@weex-module/draweritemsmanager');
+	      draweritemsmanager.sendItemClickEvent((0, _stringify2.default)(data));
+	      console.log(v);
+	    },
+	    back: function back() {
+	      console.log("back button pressed!");
+	      this.$broadcast('goBack', {
+	        to: "Hello"
+	      });
+	    },
+	    timeAgo: function timeAgo(time) {
+	      var publishedAt = new Date(time);
+	      var publishedAtTime = publishedAt.getTime() / 1000;
+	      var between = Date.now() / 1000 - Number(publishedAtTime);
+	      if (between < 3600) {
+	        return this.pluralize(~~(between / 60), ' minute');
+	      } else if (between < 86400) {
+	        return this.pluralize(~~(between / 3600), ' hour');
+	      } else {
+	        return this.pluralize(~~(between / 86400), ' day');
+	      }
+	    },
+	    pluralize: function pluralize(time, label) {
+	      if (time === 1) {
+	        return time + label;
+	      }
+	      return time + label + 's';
 	    }
 	  }
 	};}

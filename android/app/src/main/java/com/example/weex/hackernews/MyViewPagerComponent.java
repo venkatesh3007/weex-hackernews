@@ -66,12 +66,16 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
         return coordinatorLayout;
     }
 
-    private Toolbar getToolbar() {
+    public Toolbar getToolbar() {
         return toolbar;
     }
 
-    private TabLayout getTabLayout() {
+    public TabLayout getTabLayout() {
         return tabLayout;
+    }
+
+    public MyViewPagerAdapter getMyViewPagerAdapter() {
+        return myViewPagerAdapter;
     }
 
     @Override
@@ -101,7 +105,16 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
     }
 
     @Override
-    public void addChild(WXComponent child, int index) {
+    public void createChildViewAt(int index) {
+        int indexToCreate = index;
+        if(indexToCreate < 0){
+            indexToCreate = childCount()-1;
+            if(indexToCreate < 0 ){
+                return;
+            }
+        }
+
+        final WXComponent child = getChild(indexToCreate);
         if (child instanceof ToolbarComponent) {
             child.createView();
             View view = child.getRealView();
@@ -112,7 +125,7 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
             myViewPagerAdapter.addPageItem(child.getRealView(), title);
             myViewPagerAdapter.notifyDataSetChanged();
         } else {
-            super.addChild(child, index);
+            super.createChildViewAt(indexToCreate);
         }
     }
 

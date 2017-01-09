@@ -7,12 +7,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.taobao.weex.ui.component.list.WXListComponent;
+import com.taobao.weex.ui.view.WXFrameLayout;
 import com.taobao.weex.ui.view.refresh.wrapper.BounceRecyclerView;
 
 import java.util.ArrayList;
@@ -40,6 +44,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
         View view = pagerViewList.get(position);
 //        view.setLayoutParams(new LinearLayout.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT));
 //        ((BounceRecyclerView) ((ViewGroup) view).getChildAt(0)).getInnerView().setClipToPadding(false);
+        Log.d("view name", view.toString());
         container.addView(view);
 //        pagerViewList.add(view);
         return view;
@@ -73,5 +78,16 @@ public class MyViewPagerAdapter extends PagerAdapter {
     @Override
     public int getItemPosition(Object object) {
         return pagerViewList.indexOf(object);
+    }
+
+
+    public void removePageItem(String title, View view) {
+        pagerViewList.remove(view);
+        titleList.remove(title);
+    }
+
+    public void removeAllPageItems() {
+        pagerViewList.clear();
+        titleList.clear();
     }
 }
