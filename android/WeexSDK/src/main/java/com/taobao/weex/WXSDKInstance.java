@@ -210,6 +210,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Message;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -282,6 +284,8 @@ public class WXSDKInstance implements IWXActivityStateListener,DomContext, View.
   private boolean isDestroy=false;
   private Map<String,Serializable> mUserTrackParams;
   private NativeInvokeHelper mNativeInvokeHelper;
+  private DrawerLayout mDrawerLayout;
+  private Toolbar mToolbar;
 
   /**
    * Render strategy.
@@ -391,6 +395,22 @@ public class WXSDKInstance implements IWXActivityStateListener,DomContext, View.
     if (mWXScrollViewListener != null) {
       ((WXScrollView) mScrollView).addScrollViewListener(mWXScrollViewListener);
     }
+  }
+
+  public void setRootDrawerLayout(DrawerLayout drawerLayout) {
+    mDrawerLayout = drawerLayout;
+  }
+
+  public DrawerLayout getRootDrawerLayout() {
+    return mDrawerLayout;
+  }
+
+  public void setToolbar(Toolbar toolbar) {
+    mToolbar = toolbar;
+  }
+
+  public Toolbar getToolbar() {
+    return mToolbar;
   }
 
   @Deprecated

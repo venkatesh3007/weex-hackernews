@@ -37,6 +37,7 @@ public class WXApplication extends Application {
             WXSDKEngine.registerDomObject("myview", MyViewDomObject.class);
 //      WXSDKEngine.registerDomObject("toolbar", WXTextDomObject.class);
             WXSDKEngine.registerDomObject("myscroller", WXScrollerDomObject.class);
+            WXSDKEngine.registerModule("draweritemsmanager", MyDrawerItemClickListenerModule.class);
         } catch (WXException e) {
             e.printStackTrace();
         }

@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.Constants;
 import com.taobao.weex.dom.WXDomObject;
+import com.taobao.weex.ui.component.NestedContainer;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.component.WXComponentProp;
 import com.taobao.weex.ui.component.WXVContainer;
@@ -49,9 +50,6 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
         toolbar = (Toolbar) coordinatorLayout.findViewById(R.id.toolbar);
         myViewPagerAdapter = new MyViewPagerAdapter(getContext());
         viewPager.setAdapter(myViewPagerAdapter);
-
-//        SmartTabLayout tabsStrip = (SmartTabLayout) coordinatorLayout.findViewById(R.id.tabs);
-//        tabsStrip.setViewPager(viewPager);
 
         tabLayout = (TabLayout) coordinatorLayout.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -116,5 +114,10 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
         } else {
             super.addChild(child, index);
         }
+    }
+
+    @Override
+    protected void onHostViewInitialized(CoordinatorLayout host) {
+        getInstance().setToolbar(getToolbar());
     }
 }

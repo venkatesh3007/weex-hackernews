@@ -284,6 +284,7 @@ class WXRenderStatement {
         mWXSDKInstance.setRootScrollView((ScrollView) scroller.getInnerView());
       }
     }
+
     mWXSDKInstance.onRootCreated(component);
     if (mWXSDKInstance.getRenderStrategy() != WXRenderStrategy.APPEND_ONCE) {
       mWXSDKInstance.onCreateFinish();

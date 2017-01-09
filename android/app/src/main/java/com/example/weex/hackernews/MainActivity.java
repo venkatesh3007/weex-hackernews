@@ -2,8 +2,17 @@ package com.example.weex.hackernews;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
@@ -16,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends Activity implements IWXRenderListener {
+public class MainActivity extends AppCompatActivity implements IWXRenderListener {
 
     WXSDKInstance mWXSDKInstance;
 
@@ -37,6 +46,25 @@ public class MainActivity extends Activity implements IWXRenderListener {
     @Override
     public void onViewCreated(WXSDKInstance instance, View view) {
         setContentView(view);
+        if (instance.getToolbar() != null && instance.getRootDrawerLayout() != null) {
+            Toolbar toolbar = instance.getToolbar();
+            DrawerLayout drawer = instance.getRootDrawerLayout();
+            setSupportActionBar(toolbar);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mWXSDKInstance.getRootDrawerLayout().openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -56,6 +84,10 @@ public class MainActivity extends Activity implements IWXRenderListener {
 
     public void onBackPressed(){
         Log.e("USER ACTION", "BACK");
+        DrawerLayout drawer = mWXSDKInstance.getRootDrawerLayout();
+        if (drawer != null) {
+            drawer.closeDrawers();
+        }
         WXSDKManager.getInstance().fireEvent(mWXSDKInstance.getInstanceId(),"_root","androidback");
         Map<String, Object> params = new HashMap<>();
 //        mWXSDKInstance.fireGlobalEventCallback("back",params);

@@ -26,4 +26,10 @@ public class MyDrawerLayoutComponent extends WXVContainer<DrawerLayout> {
         DrawerLayout drawerLayout = (DrawerLayout) layoutInflater.inflate(R.layout.my_drawer_view_layout, null);
         return drawerLayout;
     }
+
+    @Override
+    protected void onHostViewInitialized(DrawerLayout host) {
+        super.onHostViewInitialized(host);
+        getInstance().setRootDrawerLayout(host);
+    }
 }
