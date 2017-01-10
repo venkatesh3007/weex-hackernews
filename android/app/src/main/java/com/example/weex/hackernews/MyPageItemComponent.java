@@ -43,4 +43,8 @@ public class MyPageItemComponent extends WXDiv {
         Log.d("page item destroyed: ", this.title);
         super.destroy();
     }
+
+    public void selectThisPage() {
+        fireEvent("selected");
+    }
 }

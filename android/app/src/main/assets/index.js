@@ -538,8 +538,7 @@
 	  "panel-header-danger": {
 	    "backgroundColor": "rgb(217,83,79)",
 	    "color": "#ffffff"
-	  },
-	  "panel-body": {}
+	  }
 	}
 
 /***/ },
@@ -2072,7 +2071,7 @@
 	        {
 	          "type": "mypageitem",
 	          "events": {
-	            "appear": function ($event) {this.getNewsItems(this.url,$event)}
+	            "selected": function ($event) {this.getNewsItems(this.url,$event)}
 	          },
 	          "style": {
 	            "position": "absolute",
@@ -2085,19 +2084,81 @@
 	          },
 	          "children": [
 	            {
-	              "type": "div",
+	              "type": "list",
 	              "classList": [
-	                "m-header"
+	                "news-list"
 	              ],
+	              "shown": function () {return this.showList},
+	              "attr": {
+	                "loadmoreoffset": "2000"
+	              },
 	              "children": [
 	                {
-	                  "type": "text",
+	                  "type": "cell",
+	                  "append": "tree",
 	                  "classList": [
-	                    "m-head-title"
+	                    "row"
 	                  ],
+	                  "repeat": function () {return this.newsitems},
+	                  "events": {
+	                    "click": function ($event) {this.showSelectedNews(this.js_path,$event)}
+	                  },
 	                  "attr": {
-	                    "value": function () {return this.name}
-	                  }
+	                    "index": "{{}}"
+	                  },
+	                  "children": [
+	                    {
+	                      "type": "div",
+	                      "classList": [
+	                        "news-list-item"
+	                      ],
+	                      "children": [
+	                        {
+	                          "type": "div",
+	                          "classList": [
+	                            "news-list-rightcontent"
+	                          ],
+	                          "children": [
+	                            {
+	                              "type": "text",
+	                              "classList": [
+	                                "news-item-title"
+	                              ],
+	                              "attr": {
+	                                "value": function () {return this.title}
+	                              }
+	                            },
+	                            {
+	                              "type": "div",
+	                              "classList": [
+	                                "list-timericon-time"
+	                              ],
+	                              "children": [
+	                                {
+	                                  "type": "image",
+	                                  "attr": {
+	                                    "src": "https://s29.postimg.org/l9igr6ztj/Clock_48.png"
+	                                  },
+	                                  "classList": [
+	                                    "list-timer-icon"
+	                                  ]
+	                                },
+	                                {
+	                                  "type": "text",
+	                                  "classList": [
+	                                    "list-time"
+	                                  ],
+	                                  "attr": {
+	                                    "value": function () {return this.timeAgo(this.created_at)}
+	                                  }
+	                                }
+	                              ]
+	                            }
+	                          ]
+	                        }
+	                      ]
+	                    }
+	                  ]
 	                }
 	              ]
 	            }

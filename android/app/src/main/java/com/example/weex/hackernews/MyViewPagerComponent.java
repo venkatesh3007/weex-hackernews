@@ -120,7 +120,7 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> implem
             return;
         }
         if (child instanceof MyPageItemComponent) {
-            getMyViewPagerAdapter().removePageItem(child.getDomObject().getAttrs().get("title").toString(), child.getHostView());
+            getMyViewPagerAdapter().removePageItem(child.getDomObject().getAttrs().get("title").toString(), child.getHostView(), child);
         }
         if (WXEnvironment.isApkDebugable()) {
             WXLogUtils.d("remove viewpager child", "removeChild child at " + index);
@@ -138,8 +138,12 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> implem
             getToolbar().addView(child);
         } else if (childComponentToAdd instanceof MyPageItemComponent) {
             String title = childComponentToAdd.getDomObject().getAttrs().get("title").toString();
-            myViewPagerAdapter.addPageItem(child, title);
-            viewPager.setCurrentItem(0);
+            myViewPagerAdapter.addPageItem(childComponentToAdd, child, title);
+            if (myViewPagerAdapter.getSelectedPage() == -1) {
+                viewPager.setCurrentItem(0);
+                myViewPagerAdapter.setSelectedPage(0);
+                this.onPageSelected(viewPager.getCurrentItem());
+            }
         }
     }
 
@@ -155,7 +159,11 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> implem
 
     @Override
     public void onPageSelected(int position) {
-
+        WXComponent component = getMyViewPagerAdapter().getPagerItemAtPosition(position);
+        myViewPagerAdapter.setSelectedPage(position);
+        if (component instanceof MyPageItemComponent) {
+            ((MyPageItemComponent) component).selectThisPage();
+        }
     }
 
     @Override
