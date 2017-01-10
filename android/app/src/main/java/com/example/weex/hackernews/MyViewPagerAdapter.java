@@ -1,10 +1,6 @@
 package com.example.weex.hackernews;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -45,7 +41,12 @@ public class MyViewPagerAdapter extends PagerAdapter {
 //        view.setLayoutParams(new LinearLayout.LayoutParams(ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT));
 //        ((BounceRecyclerView) ((ViewGroup) view).getChildAt(0)).getInnerView().setClipToPadding(false);
         Log.d("view name", view.toString());
-        container.addView(view);
+        if (view.getParent() == null) {
+            container.addView(view);
+        } else {
+            ((ViewGroup)view.getParent()).removeView(view);
+            container.addView(view);
+        }
 //        pagerViewList.add(view);
         return view;
     }
@@ -68,6 +69,7 @@ public class MyViewPagerAdapter extends PagerAdapter {
     public void addPageItem(View view, String title) {
         pagerViewList.add(view);
         titleList.add(title);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -77,17 +79,23 @@ public class MyViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getItemPosition(Object object) {
-        return pagerViewList.indexOf(object);
+        if (object instanceof View && pagerViewList.indexOf(object) != -1) {
+            return pagerViewList.indexOf(object);
+        } else {
+            return POSITION_NONE;
+        }
     }
 
 
     public void removePageItem(String title, View view) {
         pagerViewList.remove(view);
         titleList.remove(title);
+        notifyDataSetChanged();
     }
 
     public void removeAllPageItems() {
         pagerViewList.clear();
         titleList.clear();
+        notifyDataSetChanged();
     }
 }

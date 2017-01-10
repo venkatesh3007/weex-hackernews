@@ -16,22 +16,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.Constants;
 import com.taobao.weex.dom.WXDomObject;
 import com.taobao.weex.ui.component.NestedContainer;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.component.WXComponentProp;
+import com.taobao.weex.ui.component.WXLoading;
+import com.taobao.weex.ui.component.WXRefresh;
 import com.taobao.weex.ui.component.WXVContainer;
 import com.taobao.weex.ui.component.list.WXListComponent;
 import com.taobao.weex.ui.view.refresh.wrapper.BounceRecyclerView;
+import com.taobao.weex.utils.WXLogUtils;
 import com.taobao.weex.utils.WXUtils;
 
 /**
  * Created by venkatesh on 15/12/16.
  */
 
-public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
+public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> implements ViewPager.OnPageChangeListener{
 
     MyViewPagerAdapter myViewPagerAdapter;
     Toolbar toolbar;
@@ -53,7 +57,7 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
 
         tabLayout = (TabLayout) coordinatorLayout.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
+        viewPager.addOnPageChangeListener(this);
         myViewPagerAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
@@ -105,32 +109,57 @@ public class MyViewPagerComponent extends WXVContainer<CoordinatorLayout> {
     }
 
     @Override
-    public void createChildViewAt(int index) {
-        int indexToCreate = index;
-        if(indexToCreate < 0){
-            indexToCreate = childCount()-1;
-            if(indexToCreate < 0 ){
-                return;
-            }
+    public void remove(WXComponent child, boolean destroy) {
+        int index = mChildren.indexOf(child);
+        if (destroy) {
+            child.detachViewAndClearPreInfo();
         }
 
-        final WXComponent child = getChild(indexToCreate);
-        if (child instanceof ToolbarComponent) {
-            child.createView();
-            View view = child.getRealView();
-            getToolbar().addView(view);
-        } else if (child instanceof MyPageItemComponent) {
-            String title = child.getDomObject().getAttrs().get("title").toString();
-            child.createView();
-            myViewPagerAdapter.addPageItem(child.getRealView(), title);
-            myViewPagerAdapter.notifyDataSetChanged();
-        } else {
-            super.createChildViewAt(indexToCreate);
+        CoordinatorLayout view = getHostView();
+        if(view == null){
+            return;
+        }
+        if (child instanceof MyPageItemComponent) {
+            getMyViewPagerAdapter().removePageItem(child.getDomObject().getAttrs().get("title").toString(), child.getHostView());
+        }
+        if (WXEnvironment.isApkDebugable()) {
+            WXLogUtils.d("remove viewpager child", "removeChild child at " + index);
+        }
+        super.remove(child, destroy);
+    }
+
+    @Override
+    protected void addSubView(View child, int index) {
+        if (child == null || myViewPagerAdapter == null) {
+            return;
+        }
+        WXComponent childComponentToAdd = getChild(index);
+        if (childComponentToAdd instanceof ToolbarComponent) {
+            getToolbar().addView(child);
+        } else if (childComponentToAdd instanceof MyPageItemComponent) {
+            String title = childComponentToAdd.getDomObject().getAttrs().get("title").toString();
+            myViewPagerAdapter.addPageItem(child, title);
+            viewPager.setCurrentItem(0);
         }
     }
 
     @Override
     protected void onHostViewInitialized(CoordinatorLayout host) {
         getInstance().setToolbar(getToolbar());
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

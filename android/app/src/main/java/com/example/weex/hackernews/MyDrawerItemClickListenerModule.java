@@ -21,25 +21,10 @@ public class MyDrawerItemClickListenerModule extends WXModule {
     private static final String WEEX_CATEGORY="com.taobao.android.intent.category.WEEX";
 
     @JSMethod
-    public void sendItemClickEvent(String data) {
-//        mWXSDKInstance.fireGlobalEventCallback("itemSelected", new HashMap<String, Object>());
-        Map<String, Object> params = new HashMap<>();
-//        mWXSDKInstance.fireGlobalEventCallback("back",params);
-        JSONObject jsonObject = JSON.parseObject(data);
-        for (String key : jsonObject.keySet()) {
-            params.put(key, jsonObject.get(key));
-        }
+    public void closeDrawer(String data) {
         DrawerLayout drawer = WXSDKManager.getInstance().getSDKInstance("1").getRootDrawerLayout();
         if (drawer != null) {
             drawer.closeDrawers();
         }
-        List<WXSDKInstance> wxsdkInstances = WXSDKManager.getInstance().getWXRenderManager().getAllInstances();
-        for (WXSDKInstance instance : wxsdkInstances) {
-            instance.fireGlobalEventCallback("itemSelected", params);
-        }
-        drawer = null;
-        wxsdkInstances = null;
-        jsonObject = null;
-        params = null;
     }
 }

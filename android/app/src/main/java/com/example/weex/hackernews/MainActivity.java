@@ -44,13 +44,27 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
     }
 
     @Override
-    public void onViewCreated(WXSDKInstance instance, View view) {
+    public void onViewCreated(final WXSDKInstance instance, View view) {
         setContentView(view);
         if (instance.getToolbar() != null && instance.getRootDrawerLayout() != null) {
             Toolbar toolbar = instance.getToolbar();
             DrawerLayout drawer = instance.getRootDrawerLayout();
             setSupportActionBar(toolbar);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.drawer_open, R.string.drawer_close) {
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    HashMap<String, Object> params = new HashMap<>();
+                    instance.fireEvent("_root", "draweropened", params);
+                }
+
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super.onDrawerClosed(drawerView);
+                    HashMap<String, Object> params = new HashMap<>();
+                    instance.fireEvent("_root", "drawerclosed", params);
+                }
+            };
             drawer.addDrawerListener(toggle);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toggle.syncState();
