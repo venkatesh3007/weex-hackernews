@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
 
         mWXSDKInstance = new WXSDKInstance(this);
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
 
     @Override
     public void onViewCreated(final WXSDKInstance instance, View view) {
-        setContentView(view);
         if (instance.getToolbar() != null && instance.getRootDrawerLayout() != null) {
             Toolbar toolbar = instance.getToolbar();
             DrawerLayout drawer = instance.getRootDrawerLayout();
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toggle.syncState();
         }
+        setContentView(view);
     }
 
     @Override

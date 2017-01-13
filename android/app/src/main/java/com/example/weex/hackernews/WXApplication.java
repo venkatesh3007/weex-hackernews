@@ -38,6 +38,7 @@ public class WXApplication extends Application {
 //      WXSDKEngine.registerDomObject("toolbar", WXTextDomObject.class);
             WXSDKEngine.registerDomObject("myscroller", WXScrollerDomObject.class);
             WXSDKEngine.registerModule("draweritemsmanager", MyDrawerItemClickListenerModule.class);
+            WXSDKEngine.registerModule("instantpagesmanager", InstantPageModule.class);
         } catch (WXException e) {
             e.printStackTrace();
         }
